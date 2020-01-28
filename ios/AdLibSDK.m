@@ -32,7 +32,7 @@
         NSLog(@"SDK initialization complete");
         
         
-        if (shouldShowGDPR) {
+        if (shouldShowGDPR && [MoPub sharedInstance].shouldShowConsentDialog) {
             [[MoPub sharedInstance] loadConsentDialogWithCompletion:^(NSError *error){
                 UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
                 [[MoPub sharedInstance] showConsentDialogFromViewController:rootViewController completion:nil];
