@@ -32,10 +32,10 @@ RCT_EXPORT_MODULE();
 
 
 
-RCT_EXPORT_METHOD(initializeInterstitialAd:(NSString *)unitId)
+RCT_EXPORT_METHOD(initializeInterstitialAd:(NSString *)unitId shouldShowGDPR:(BOOL)shouldShowGDPR)
 {
     
-    [AdLibSDK initializeAdSDK:unitId];
+    [AdLibSDK initializeAdSDKWithGDPR:unitId shouldShowGDPR:shouldShowGDPR];
     RCTLog(@"Mopub Initialized from Library!");
     self.interstitial = [MPInterstitialAdController interstitialAdControllerForAdUnitId:unitId];
     self.interstitial.delegate = self;

@@ -5,7 +5,7 @@ const { RNMoPubInterstitial } = NativeModules;
 const emitter = new NativeEventEmitter(RNMoPubInterstitial);
 
 module.exports = {
-    initializeInterstitialAd: (adUnitId: string) => RNMoPubInterstitial.initializeInterstitialAd(adUnitId),
+    initializeInterstitialAd: (adUnitId: string, shouldShowGDPR: bool) => RNMoPubInterstitial.initializeInterstitialAd(adUnitId, shouldShowGDPR),
     loadAd: () => RNMoPubInterstitial.loadAd(),
     setKeywords: (keywords: string) => RNMoPubInterstitial.setKeywords(keywords),
     isReady: (): Promise => RNMoPubInterstitial.isReady(),

@@ -14,6 +14,12 @@
 @implementation AdLibSDK
 
 + (void)initializeAdSDK:(NSString *)unitID {
+
+    [self initializeAdSDKWithGDPR:unitID shouldShowGDPR:false];
+}
+
+
++ (void)initializeAdSDKWithGDPR:(NSString *)unitID shouldShowGDPR:(BOOL)shouldShowGDPR {
     AdColonyGlobalMediationSettings *adColonyMediationSettings = [[AdColonyGlobalMediationSettings alloc] init];
     MPGoogleGlobalMediationSettings *mpGoogleMediationSettings = [[MPGoogleGlobalMediationSettings alloc] init];
     TapjoyGlobalMediationSettings *tapJoyMediationSettings = [[TapjoyGlobalMediationSettings alloc] init];
@@ -24,6 +30,15 @@
     sdkConfig.globalMediationSettings = [[NSArray alloc] initWithObjects: @[adColonyMediationSettings, mpGoogleMediationSettings, tapJoyMediationSettings, vungleMediationSettings], nil];
     [[MoPub sharedInstance] initializeSdkWithConfiguration:sdkConfig completion:^{
         NSLog(@"SDK initialization complete");
+        
+        
+        if (shouldShowGDPR) {
+            [[MoPub sharedInstance] loadConsentDialogWithCompletion:^(NSError *error){
+                UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+                [[MoPub sharedInstance] showConsentDialogFromViewController:rootViewController completion:nil];
+            }];
+        }
+        
     }];
 }
 
