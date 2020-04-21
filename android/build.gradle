@@ -53,8 +53,8 @@ repositories {
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
-implementation('com.mopub:mopub-sdk:5.11.0@aar') {
+    implementation 'com.facebook.react:react-native:+'
+    implementation('com.mopub:mopub-sdk:5.11.0@aar') {
         transitive = true
     }
 
