@@ -1,6 +1,6 @@
 package com.reactlibrary;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.LifecycleEventListener;
@@ -56,10 +56,8 @@ public class RNMoPubRewardedVideo extends ReactContextBaseJavaModule implements 
 
 
     @ReactMethod
-    public void initializeSdkForRewardedVideoAd(String adUnitId) {
-
-        AdLibSDK.initializeAdSDK(null, adUnitId, mReactContext.getCurrentActivity());
-
+    public void initializeSdkForRewardedVideoAd(String adUnitId, Boolean shouldShowGDPR) {
+        AdLibSDK.initializeAdSDKWithGDPR(null, adUnitId, mReactContext.getCurrentActivity(), shouldShowGDPR);
     }
 
     @ReactMethod
@@ -68,6 +66,11 @@ public class RNMoPubRewardedVideo extends ReactContextBaseJavaModule implements 
         MoPubRewardedVideos.loadRewardedVideo(adUnitId);
         MoPubRewardedVideos.setRewardedVideoListener(this);
 
+    }
+
+    @ReactMethod
+    public void showRewardedVideoAdForAdUnitID(String unitId) {
+        MoPubRewardedVideos.showRewardedVideo(unitId);
     }
 
 
@@ -85,7 +88,6 @@ public class RNMoPubRewardedVideo extends ReactContextBaseJavaModule implements 
 
     @ReactMethod
     public void presentRewardedVideoAdForAdUnitID(String unitId, String currencyType, Double amount, Callback callback) {
-
 
         Set<MoPubReward> rewards = MoPubRewardedVideos.getAvailableRewards(unitId);
 
