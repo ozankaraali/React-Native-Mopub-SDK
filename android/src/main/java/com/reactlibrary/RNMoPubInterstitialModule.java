@@ -40,12 +40,10 @@ public class RNMoPubInterstitialModule extends ReactContextBaseJavaModule implem
     }
 
     @ReactMethod
-    public void initializeInterstitialAd(String adUnitId) {
-
-        AdLibSDK.initializeAdSDK(null,adUnitId, getCurrentActivity());
+    public void initializeInterstitialAd(String adUnitId, Boolean shouldShowGDPR) {
+        AdLibSDK.initializeAdSDKWithGDPR(null, adUnitId, getCurrentActivity(), shouldShowGDPR);
         mInterstitial = new MoPubInterstitial(getCurrentActivity(), adUnitId);
         mInterstitial.setInterstitialAdListener(this);
-
     }
 
     @ReactMethod
