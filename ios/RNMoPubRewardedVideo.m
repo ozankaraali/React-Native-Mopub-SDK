@@ -33,10 +33,10 @@ RCT_EXPORT_MODULE();
 }
 
 
-RCT_EXPORT_METHOD(loadRewardedVideoAdWithAdUnitID:(NSString *)unitId)
+RCT_EXPORT_METHOD(loadRewardedVideoAdWithAdUnitID:(NSString *)unitId  (NSString* )customerId)
 {
     
-    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:unitId withMediationSettings:@[]];
+    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:unitId customerId:customerId mediationSettings:@[]];
     [MPRewardedVideo setDelegate:self forAdUnitId:unitId];
     
 }
