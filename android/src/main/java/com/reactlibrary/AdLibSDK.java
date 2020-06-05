@@ -39,7 +39,7 @@ public class AdLibSDK {
 
             }
 
-            PersonalInfoManager mPersonalInfoManager = MoPub.getPersonalInformationManager()!=null;
+            PersonalInfoManager mPersonalInfoManager = MoPub.getPersonalInformationManager();
 
             private SdkInitializationListener initSdkListener() {
                 return new SdkInitializationListener() {
