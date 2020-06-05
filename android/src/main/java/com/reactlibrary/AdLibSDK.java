@@ -27,23 +27,24 @@ public class AdLibSDK {
         Handler mainHandler = new Handler(context.getMainLooper());
 
         Runnable myRunnable = new Runnable() {
+            
             @Override
             public void run() {
-
                 SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder(adUnitId)
                         .withLogLevel(MoPubLog.LogLevel.DEBUG)
-                        .withLegitimateInterestAllowed(false)
+                        .withLegitimateInterestAllowed(true)
                         .build();
 
                 MoPub.initializeSdk(context, sdkConfiguration, initSdkListener());
 
             }
 
+            PersonalInfoManager mPersonalInfoManager = MoPub.getPersonalInformationManager()!=null;
+
             private SdkInitializationListener initSdkListener() {
                 return new SdkInitializationListener() {
                     @Override
                     public void onInitializationFinished() {
-                        PersonalInfoManager mPersonalInfoManager = MoPub.getPersonalInformationManager();
                         if (mPersonalInfoManager != null && mPersonalInfoManager.shouldShowConsentDialog()) {
                             mPersonalInfoManager.loadConsentDialog(initDialogLoadListener());
                         }
@@ -62,7 +63,6 @@ public class AdLibSDK {
         
                     @Override
                     public void onConsentDialogLoaded() {
-                        PersonalInfoManager mPersonalInfoManager = MoPub.getPersonalInformationManager();
                         if (mPersonalInfoManager != null) {
                             mPersonalInfoManager.showConsentDialog();
                             //mShowingConsentDialog = true;

@@ -14,6 +14,7 @@ import com.mopub.common.MoPubReward;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubRewardedVideoListener;
 import com.mopub.mobileads.MoPubRewardedVideos;
+import com.mopub.mobileads.MoPubRewardedVideoManager.RequestParameters;
 
 import org.json.JSONObject;
 
@@ -61,9 +62,9 @@ public class RNMoPubRewardedVideo extends ReactContextBaseJavaModule implements 
     }
 
     @ReactMethod
-    public void loadRewardedVideoAdWithAdUnitID(String adUnitId) {
+    public void loadRewardedVideoAdWithAdUnitID(String adUnitId, String customerId) {
 
-        MoPubRewardedVideos.loadRewardedVideo(adUnitId);
+        MoPubRewardedVideos.loadRewardedVideo(adUnitId, new RequestParameters(null, null, null, customerId));
         MoPubRewardedVideos.setRewardedVideoListener(this);
 
     }

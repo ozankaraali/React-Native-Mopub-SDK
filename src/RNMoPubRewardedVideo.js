@@ -6,7 +6,7 @@ const emitter = new NativeEventEmitter(RNMoPubRewardedVideo);
 
 module.exports = {
     initializeSdkForRewardedVideoAd: (adUnitId:string, shouldShowGDPR: bool) => RNMoPubRewardedVideo.initializeSdkForRewardedVideoAd(adUnitId, shouldShowGDPR),
-    loadRewardedVideoAdWithAdUnitID: (adUnitId: string) => RNMoPubRewardedVideo.loadRewardedVideoAdWithAdUnitID(adUnitId),
+    loadRewardedVideoAdWithAdUnitID: (adUnitId: string, customerId: string) => RNMoPubRewardedVideo.loadRewardedVideoAdWithAdUnitID(adUnitId, customerId),
     showRewardedVideoAdForAdUnitID: (adUnitId: string) => RNMoPubRewardedVideo.showRewardedVideoAdForAdUnitID(adUnitId),
     presentRewardedVideoAdForAdUnitID: (adUnitId: string, currencyType:string, amount: number, promise:()=>{}) => RNMoPubRewardedVideo.presentRewardedVideoAdForAdUnitID(adUnitId, currencyType, amount, promise),
     availableRewardsForAdUnitID: (adUnitId:string, promise:()=>{}) => RNMoPubRewardedVideo.availableRewardsForAdUnitID(adUnitId,promise),
